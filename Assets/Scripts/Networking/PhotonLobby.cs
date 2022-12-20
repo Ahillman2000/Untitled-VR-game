@@ -60,7 +60,9 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     {
         Debug.Log("OnConnectedToMaster() was called by PUN.");
 #if UNITY_ANDROID
-        joinRoomButton.interactable   = true;
+        //joinRoomButton.interactable   = true;
+        Debug.log("User beginning search for room");
+        PhotonNetwork.JoinRandomRoom();
 #else
         createRoomButton.interactable = true;
 #endif
@@ -86,7 +88,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         base.OnCreateRoomFailed(returnCode, message);
-        Debug.Log($"Creating new room failed, {message}");
+        Debug.Log($"Creating new room failed, {message}. Recreating new room");
         CreateNewRoom();
     }
 
@@ -96,8 +98,8 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         base.OnJoinRandomFailed(returnCode, message);
-        Debug.Log($"Failed to join random room. {message}. Creating new room");
-        //CreateNewRoom();
+        Debug.Log($"Failed to join random room. {message}. Reattempting ...");
+        JoinRandomRoom();
     }
 
     /// <summary>
@@ -106,8 +108,6 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-
-        //SceneManager.LoadScene("Room");
 
         Debug.Log($"Joined room {PhotonNetwork.CurrentRoom.Name}");
 
@@ -144,8 +144,8 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     private void SetUIByPlatform()
     {
 #if UNITY_ANDROID
-        joinRoomButton.gameObject.SetActive(true);
-        joinRoomButton.interactable = false;
+        //joinRoomButton.gameObject.SetActive(true);
+        //joinRoomButton.interactable = false;
 #else
         createRoomButton.gameObject.SetActive(true);
         createRoomButton.interactable = false;

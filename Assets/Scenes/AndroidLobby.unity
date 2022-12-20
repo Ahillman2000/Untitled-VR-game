@@ -1233,6 +1233,7 @@ MonoBehaviour:
     type: 3}
   screenPlayerPrefab: {fileID: 7850191825626151298, guid: 82d7a52a23e2075468370169e64a92cd,
     type: 3}
+  gameSeceneIndex: 1
 --- !u!4 &1310884318
 Transform:
   m_ObjectHideFlags: 0
