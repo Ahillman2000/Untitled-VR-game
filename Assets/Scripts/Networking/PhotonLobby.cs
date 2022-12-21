@@ -61,7 +61,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         Debug.Log("OnConnectedToMaster() was called by PUN.");
 #if UNITY_ANDROID
         //joinRoomButton.interactable   = true;
-        Debug.log("User beginning search for room");
+        Debug.Log("User beginning search for room");
         PhotonNetwork.JoinRandomRoom();
 #else
         createRoomButton.interactable = true;
